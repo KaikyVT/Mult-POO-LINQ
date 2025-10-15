@@ -1,10 +1,11 @@
+using System.Runtime.InteropServices;
 using Multiplicacao.models;
 
 namespace Multiplicacao.controller;
 
 class PedidoControle
 {
-    private static List<Pedido> _pedidos = [];
+    private static readonly List<Pedido> _pedidos = [];
 
     public static void ChamaExercicio(int numeroEx)
     {
@@ -22,6 +23,9 @@ class PedidoControle
             case 10: Ex10(); break;
             case 11: Ex11(); break;
             case 12: Ex12(); break;
+            case 13: Ex13(); break;
+            case 14: Ex14(); break;
+            case 15: Ex15(); break;
         }
     }
     public static void AdicionaNaLista(Pedido pedido)
@@ -232,5 +236,49 @@ class PedidoControle
         }).MaxBy(v => v.TotVendas);
         Console.WriteLine($"😺 -> A cidade com mais vendas é {CidadeVend.Key} com {CidadeVend.TotVendas:c} e {CidadeVend.TotPedidos} pedidos distintos");
     }
-
+    private static void Ex13()
+    {
+        var mediaValor = _pedidos.Average(m => m.ValorTotal);
+        var vendedoresAbaixo = _pedidos.GroupBy(v => v.NomeVendedor).Select(n => new
+        {
+            Nome = n.Key,
+            Media = n.Average(v => v.ValorTotal)
+        }).Where(v => v.Media < mediaValor).OrderBy(n => n.Media);
+        Console.WriteLine($"😺 -> Vendedores abaixo da média da empresa ({mediaValor:c})");
+        foreach (var vendedor in vendedoresAbaixo)
+        {
+            Console.WriteLine($"| {vendedor.Nome} - {vendedor.Media:c}");
+            Console.WriteLine("|___________________________________________________________");
+        }
+    }
+    private static void Ex14()
+    {
+        var produtoCaroCategoria = _pedidos.GroupBy(c => c.CategoriaProduto)
+                                           .Select(n => new
+                                           {
+                                               Categoria = n.Key,
+                                               Produto = n.MaxBy(v => v.ValorTotal / v.Quantidade)
+                                           }).OrderByDescending(v => v.Produto.ValorTotal);
+        Console.WriteLine("😺 -> O produto de maior valor unitário por categoria");
+        foreach (var produto in produtoCaroCategoria)
+        {
+            var valor = produto.Produto.ValorTotal / produto.Produto.Quantidade;
+            Console.WriteLine($"|{produto.Categoria} -> {produto.Produto.Produto}: {valor:c}");
+            Console.WriteLine("|______________________________________________________");
+        }
+    }
+    private static void Ex15()
+    {
+        var eletronicosValorEstado = _pedidos.Where(c => c.CategoriaProduto.Equals("Eletrônicos")).GroupBy(e => e.Estado).Select(n => new
+        {
+            Estado = n.Key,
+            ValorTotal = n.Sum(v => v.ValorTotal)
+        }).OrderByDescending(v => v.ValorTotal);
+        Console.WriteLine("😺 -> Estados que mais arrecadaram com eletrônicos");
+        foreach (var estado in eletronicosValorEstado)
+        {
+            Console.WriteLine($"| {estado.Estado} - {estado.ValorTotal:c}");
+            Console.WriteLine("|_________________________________________________");
+        }
+    }
 }

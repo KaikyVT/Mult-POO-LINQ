@@ -6,7 +6,7 @@ namespace Multiplicacao.view;
 public class Menu
 {
     const int RESPOSTA_MINIMA = 1;
-    const int RESPOSTA_MAXIMA = 12;
+    const int RESPOSTA_MAXIMA = 15;
     public static void Iniciar()
     {
         bool querSair = false;
@@ -18,7 +18,7 @@ public class Menu
                 Console.Clear();
                 try
                 {
-                    Console.Write("Olá, multiplicador😺! Qual exercício deseja verificar [de 1 a 12]?\n> ");
+                    Console.Write($"Olá, multiplicador😺! Qual exercício deseja verificar [de 1 a {RESPOSTA_MAXIMA}]?\n> ");
                     resposta = int.Parse(Console.ReadLine());
                 }
                 catch
