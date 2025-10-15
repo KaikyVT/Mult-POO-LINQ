@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multiplicacao", "Multiplicacao.csproj", "{CDC5D8FF-DF6A-5E39-A0EA-F0B4F97E4F1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDC5D8FF-DF6A-5E39-A0EA-F0B4F97E4F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC5D8FF-DF6A-5E39-A0EA-F0B4F97E4F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC5D8FF-DF6A-5E39-A0EA-F0B4F97E4F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC5D8FF-DF6A-5E39-A0EA-F0B4F97E4F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B55359E1-C4F3-41D3-B4BC-BBD20686207D}
+	EndGlobalSection
+EndGlobal
