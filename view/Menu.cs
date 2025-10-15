@@ -6,7 +6,7 @@ namespace Multiplicacao.view;
 public class Menu
 {
     const int RESPOSTA_MINIMA = 1;
-    const int RESPOSTA_MAXIMA = 15;
+    const int RESPOSTA_MAXIMA = 16;
     public static void Iniciar()
     {
         bool querSair = false;

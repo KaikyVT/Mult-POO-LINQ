@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Net;
 using System.Runtime.InteropServices;
 using Multiplicacao.models;
 
@@ -26,6 +28,7 @@ class PedidoControle
             case 13: Ex13(); break;
             case 14: Ex14(); break;
             case 15: Ex15(); break;
+            case 16: Ex16(); break;
         }
     }
     public static void AdicionaNaLista(Pedido pedido)
@@ -279,6 +282,19 @@ class PedidoControle
         {
             Console.WriteLine($"| {estado.Estado} - {estado.ValorTotal:c}");
             Console.WriteLine("|_________________________________________________");
+        }
+    }
+    private static void Ex16()
+    {
+        var TendenciaMensal = _pedidos.GroupBy(d => (d.DataPedido.Month, d.DataPedido.Year)).Select(n => new
+        {
+            Data = new DateTime(n.Key.Year, n.Key.Month, 1),
+            Media = n.Average(q => q.Quantidade)
+        }).OrderBy(d => d.Data);
+        Console.WriteLine("😺 -> Tendência mensal de quantidade de itens por pedido!");
+        foreach (var tendencia in TendenciaMensal)
+        {
+            Console.WriteLine($"{tendencia.Data.ToString("MMMM", new CultureInfo("pt-BR"))}/{tendencia.Data.ToString("yyyy", new CultureInfo("pt-BR"))} - {tendencia.Media.ToString("F2")}");
         }
     }
 }
